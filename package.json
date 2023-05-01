@@ -10,7 +10,7 @@
     "start": "ts-node server/index.ts",
     "test": "jest",
     "test:watch": "jest --noStackTrace --watchAll",
-    "dev": "run-p dev:client dev:server",
+    "dev": "run-p dev:client dev:server tailwind",
     "dev:client": "npm run webpack -- --watch",
     "dev:server": "nodemon server/index.ts",
     "build": "run-p build:client build:server",
@@ -18,7 +18,8 @@
     "build:server": "npm run knex -- migrate:latest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "webpack": "webpack --config ./client/webpack.config.js",
-    "knex": "knex --knexfile ./server/db/knexfile.js"
+    "knex": "knex --knexfile ./server/db/knexfile.js",
+    "tailwind": "npx tailwindcss -i ./server/public/input.css -o ./server/public/output.css --watch"
   },
   "babel": {
     "presets": [
@@ -80,6 +81,7 @@
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
     "supertest": "^6.2.2",
+    "tailwindcss": "^3.3.2",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "typescript": "~4.8.4",
