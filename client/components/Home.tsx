@@ -1,3 +1,9 @@
 export default function Home() {
-  return <p>Home page</p>
+  return (
+    <>
+      <section>
+        <img src="./images/wawa.jpg" alt="Inside of Rishis barbershop"></img>
+      </section>
+    </>
+  )
 }
