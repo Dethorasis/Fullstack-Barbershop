@@ -7,9 +7,10 @@ const server = express()
 server.use(express.json())
 server.use(express.static(join(__dirname, 'public')))
 
-server.use('/services', salonRoutes)
+// Add your API routes here
+server.use('/api/v1/serviceroutes', salonRoutes)
 
-// Catch-all route: Serve index.html for any unmatched route
+// Serve the main HTML file for all routes
 server.get('*', (req, res) => {
   res.sendFile(join(__dirname, 'public', 'index.html'))
 })
