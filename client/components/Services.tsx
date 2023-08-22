@@ -20,15 +20,21 @@ function Services() {
   }, [])
 
   return (
-    <div>
-      <h2>Services List</h2>
-      <ul>
+    <div className="p-4 rounded my-10 mx-96">
+      <h2 className="text-3xl font-bold mb-4 text-center">Services List</h2>
+      <div className="grid grid-cols-2 gap-6 my-8">
         {services.map((service) => (
-          <li key={service.id}>
-            {service.name} - {service.description}
-          </li>
+          <div
+            key={service.id}
+            className="border border-gray-400 p-4 rounded my-1"
+          >
+            <h3 className="text-3xl font-semibold mb-2 text-center">
+              {service.name}
+            </h3>
+            <p className="text-center">{service.description}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
