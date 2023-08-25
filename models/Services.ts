@@ -4,6 +4,6 @@ export interface ServiceModel {
   price: number
   description: string
 }
-export interface ServiceID extends Services {
+export interface ServiceID extends ServiceModel {
   id: number
 }

@@ -1,6 +1,6 @@
 import connection from './connection'
-import type { Services } from '../../models/Services'
+import type { ServiceModel } from '../../models/Services'
 
-export function getServices(db = connection): Promise<Services[]> {
+export function getServices(db = connection): Promise<ServiceModel[]> {
   return db('services').select()
 }
