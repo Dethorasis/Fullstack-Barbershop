@@ -1,6 +1,7 @@
 import connection from './connection'
 import type { ServiceModel } from '../../models/Services'
 import { GalleryModel } from '../../models/Gallery'
+import { ContactModel } from '../../models/Contact'
 
 export function getServices(db = connection): Promise<ServiceModel[]> {
   return db('services').select()
@@ -8,4 +9,8 @@ export function getServices(db = connection): Promise<ServiceModel[]> {
 
 export function getGallery(db = connection): Promise<GalleryModel[]> {
   return db('gallery').select()
+}
+
+export function getContact(db = connection): Promise<ContactModel[]> {
+  return db('contact').select()
 }
