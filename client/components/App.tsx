@@ -4,6 +4,7 @@ import Nav from './Nav'
 import ServicesPage from './Services'
 import GalleryPage from './Gallery'
 import ContactPage from './Contact'
+import AddServices from './admin/AddServices'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/admin/services" element={<AddServices />} />
         </Routes>
       </div>
     </>
