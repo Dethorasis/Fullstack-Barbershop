@@ -14,6 +14,9 @@ server.use('/api/v1/serviceroutes', salon)
 server.use('/api/v1/galleryroutes', gallery)
 server.use('/api/v1/contactroutes', contact)
 
+//Admin Routes
+server.use('/api/v1/admin/serviceroutes', salon)
+
 // Serve the main HTML file for all routes
 server.get('*', (req, res) => {
   res.sendFile(join(__dirname, 'public', 'index.html'))
