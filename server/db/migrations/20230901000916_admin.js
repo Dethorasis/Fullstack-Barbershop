@@ -14,7 +14,10 @@ exports.up = function (knex) {
       table.boolean('isAuthenticated').defaultTo(true)
     })
     .then(async () => {
-      const hashedPassword = await bcrypt.hash('admin_password', 10)
+      const hashedPassword = await bcrypt.hash(
+        'google-oauth2|101671528943780321224',
+        10
+      )
       return knex('admin').insert({
         username: 'adminName',
         password: hashedPassword,
