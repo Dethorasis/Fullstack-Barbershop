@@ -3,6 +3,7 @@ import { join } from 'node:path'
 import salon from './routes/salon'
 import gallery from './routes/gallery'
 import contact from './routes/contact'
+import authenticate from './routes/authenticate'
 
 const server = express()
 
@@ -16,6 +17,7 @@ server.use('/api/v1/contactroutes', contact)
 
 //Admin Routes
 server.use('/api/v1/admin/serviceroutes', salon)
+server.use('/api/v1/', authenticate)
 
 // Serve the main HTML file for all routes
 server.get('*', (req, res) => {

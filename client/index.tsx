@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       domain={'dev-aaqk30w0szx78zcc.us.auth0.com'}
       clientId={'maDBtDpIG4Y6t7itHl9tB5zGWXobevLY'}
       authorizationParams={{
-        redirect_uri: `${window.location.origin}`,
+        redirect_uri: `${window.location.origin}/login`,
         audience: `https://login`,
       }}
     >

@@ -24,3 +24,8 @@ export function getGallery(db = connection): Promise<GalleryModel[]> {
 export function getContact(db = connection): Promise<ContactModel[]> {
   return db('contact').select()
 }
+
+export function checkUserAuthentication(db = connection) {
+
+  return db('admin').select()
+}
