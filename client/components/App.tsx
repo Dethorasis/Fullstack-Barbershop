@@ -5,6 +5,7 @@ import ServicesPage from './Services'
 import GalleryPage from './Gallery'
 import ContactPage from './Contact'
 import AddServices from './admin/AddServices'
+import Login from './Login'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/admin/services" element={<AddServices />} />
         </Routes>
       </div>
