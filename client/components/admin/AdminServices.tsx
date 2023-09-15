@@ -34,14 +34,22 @@ function AdminServices({ onClose }: AdminServicesProps) {
 
   return (
     <div>
-      <Services services={services} />
+      <div style={{ position: 'relative' }}>
+        <Services services={services} />
 
-      <button
-        className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
-        onClick={openAddServicePopup}
-      >
-        Add Service
-      </button>
+        <button
+          className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+          onClick={openAddServicePopup}
+          style={{
+            position: 'absolute',
+            bottom: '-30px', // Adjust as needed to control the distance from the bottom
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }}
+        >
+          Add Service
+        </button>
+      </div>
 
       {isAddServicePopupOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -49,7 +57,7 @@ function AdminServices({ onClose }: AdminServicesProps) {
             onClose={() => {
               closeAddServicePopup()
               fetchServices()
-              onClose() // Call the onClose prop from the parent component when you want to close the popup
+              onClose()
             }}
           />
         </div>
