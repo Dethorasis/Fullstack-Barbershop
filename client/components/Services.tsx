@@ -4,15 +4,15 @@ import { ServiceModel } from '../../models/Services'
 
 function Services() {
   const [services, setServices] = useState<ServiceModel[]>([])
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Fetch services data from the backend API when the component mounts
     async function fetchServices() {
       try {
         const data = await getServices()
-        setServices(data) // Update the state with the fetched data
+        setServices(data)
       } catch (error) {
-        console.error('Error fetching services')
+        setError('Error fetching services')
       }
     }
 

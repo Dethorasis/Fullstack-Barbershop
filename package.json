@@ -44,6 +44,7 @@
     "@redux-devtools/extension": "^3.2.3",
     "bcrypt": "^5.1.1",
     "express": "^4.17.2",
+    "express-session": "^1.17.3",
     "knex": "^2.3.0",
     "pg": "^8.8.0",
     "sqlite3": "^5.1.2",
