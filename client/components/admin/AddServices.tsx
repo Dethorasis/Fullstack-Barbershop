@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { addServices } from '../../apis/services' // Import your API function
+import { addServices } from '../../apis/services'
 
-function AddServices() {
+function AddServices({ onClose }) {
   const [serviceName, setServiceName] = useState('')
   const [servicePrice, setServicePrice] = useState(0)
   const [serviceDescription, setServiceDescription] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -18,19 +19,30 @@ function AddServices() {
       }
       await addServices(newService)
 
-      // Clear form fields after successful submission
-      setServiceName('')
-      setServicePrice(0)
-      setServiceDescription('')
+      // Close the popup
+      onClose()
     } catch (error) {
-      console.error('Error adding service:', error)
+      setError('Error adding service. Please try again later.')
     }
   }
 
-return (
-    <div className="p-4 flex items-center justify-center min-h-screen">
-      <div className="bg-white p-4 rounded shadow-md max-w-lg">
+  return (
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      {/* Backdrop */}
+      <div className="fixed inset-0 bg-black opacity-50"></div>
+
+      {/* AddServices popup */}
+      <div className="bg-white p-4 rounded shadow-md max-w-lg z-10">
+        {/* Close button */}
+        <button
+          className="absolute top-2 right-2 text-white hover:text-gray-300"
+          onClick={onClose}
+        >
+          Close
+        </button>
+
         <h2 className="text-2xl font-bold mb-4 text-center">Add New Service</h2>
+        {error && <p className="text-red-500 text-center mb-2">{error}</p>}
         <form onSubmit={handleSubmit} className="grid gap-4">
           <input
             type="text"
@@ -64,8 +76,7 @@ return (
         </form>
       </div>
     </div>
-)
-
+  )
 }
 
 export default AddServices
