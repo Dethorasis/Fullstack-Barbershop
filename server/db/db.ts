@@ -16,6 +16,9 @@ export function addServices(
     description: service.description,
   })
 }
+export function deleteServices(id: number, db = connection) {
+  return db('services').where('id', id).del()
+}
 
 export function getGallery(db = connection): Promise<GalleryModel[]> {
   return db('gallery').select()
@@ -25,7 +28,7 @@ export function getContact(db = connection): Promise<ContactModel[]> {
   return db('contact').select()
 }
 
-export function checkUserAuthentication(db = connection) {
+// export function checkUserAuthentication(db = connection) {
 
-  return db('admin').select()
-}
+//   return db('admin').select()
+// }
