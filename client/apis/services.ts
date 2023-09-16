@@ -19,3 +19,16 @@ export async function addServices(service: any) {
     console.error('Error adding service:')
   }
 }
+
+export async function deleteServices(serviceId: number) {
+  try {
+    const response = await request.delete(`${serviceURL}/${serviceId}`)
+    if (response.status === 200) {
+      return response.body
+    } else {
+      throw new Error('Failed to delete service')
+    }
+  } catch (error) {
+    console.error('Error adding service:')
+  }
+}

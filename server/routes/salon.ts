@@ -27,4 +27,12 @@ router.post('/', async (req, res) => {
   }
 })
 
+router.delete('/:id', async (req, res) => {
+  const serviceId = req.params.id
+
+  const deletedService = await db.deleteServices(+serviceId)
+  console.log('deleting on admin service route')
+  res.json(deletedService)  
+})
+
 export default router
