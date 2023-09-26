@@ -31,7 +31,7 @@ function AdminServices() {
   const closeAddServicePopup = () => {
     setIsAddServicePopupOpen(false)
   }
-  const openDeleteConfirmation = (service: any) => {
+  const openDeleteConfirmation = (service: ServiceModel) => {
     setServiceToDelete(service)
     setIsDeleteConfirmationOpen(true)
   }
@@ -90,7 +90,12 @@ function AdminServices() {
       </button>
 
       {/* Add Service Popup */}
-      {isAddServicePopupOpen && <AddServices onClose={closeAddServicePopup} />}
+      {isAddServicePopupOpen && (
+        <AddServices
+          onClose={closeAddServicePopup}
+          fetchServices={fetchServices}
+        />
+      )}
 
       {/* Delete Confirmation Modal */}
       {isDeleteConfirmationOpen && (

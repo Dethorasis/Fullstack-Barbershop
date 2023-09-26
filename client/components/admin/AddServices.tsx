@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { addServices } from '../../apis/services'
-// import { AdminServicesProps } from './AdminServices'
 
-function AddServices({ onClose }: any) {
+function AddServices({ onClose, fetchServices }: any) {
   const [serviceName, setServiceName] = useState('')
   const [servicePrice, setServicePrice] = useState(0)
   const [serviceDescription, setServiceDescription] = useState('')
@@ -22,6 +21,7 @@ function AddServices({ onClose }: any) {
 
       // Close the popup
       onClose()
+      fetchServices()
     } catch (error) {
       setError('Error adding service. Please try again later.')
     }

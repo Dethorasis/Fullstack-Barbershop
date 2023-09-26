@@ -3,6 +3,8 @@ import type { ServiceModel } from '../../models/Services'
 import { GalleryModel } from '../../models/Gallery'
 import { ContactModel } from '../../models/Contact'
 
+//SERVICE FUNCTIONS
+
 export function getServices(db = connection): Promise<ServiceModel[]> {
   return db('services').select()
 }
@@ -19,14 +21,32 @@ export function addServices(
 export function deleteServices(id: number, db = connection) {
   return db('services').where('id', id).del()
 }
+export function updateServices(
+  service: ServiceModel,
+  db = connection
+): Promise<number> {
+  return db('services')
+    .update({
+      name: service.name,
+      price: service.price,
+      description: service.description,
+    })
+    .where('id', service.id)
+}
+
+//GALLERY FUNCTIONS
 
 export function getGallery(db = connection): Promise<GalleryModel[]> {
   return db('gallery').select()
 }
 
+//CONTACT FUNCTIONS
+
 export function getContact(db = connection): Promise<ContactModel[]> {
   return db('contact').select()
 }
+
+//AUTHENTICATION FUNCTIONS
 
 // export function checkUserAuthentication(db = connection) {
 
