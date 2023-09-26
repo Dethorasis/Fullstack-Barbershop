@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { addServices } from '../../apis/services'
-import { AdminServicesProps } from './AdminServices'
+// import { AdminServicesProps } from './AdminServices'
 
-function AddServices({ onClose }: AdminServicesProps) {
+function AddServices({ onClose }) {
   const [serviceName, setServiceName] = useState('')
   const [servicePrice, setServicePrice] = useState(0)
   const [serviceDescription, setServiceDescription] = useState('')
