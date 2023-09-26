@@ -8,7 +8,9 @@ function AdminServices() {
   const [isAddServicePopupOpen, setIsAddServicePopupOpen] = useState(false)
   const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] =
     useState(false)
-  const [serviceToDelete, setServiceToDelete] = useState(null)
+  const [serviceToDelete, setServiceToDelete] = useState<ServiceModel | null>(
+    null
+  )
 
   useEffect(() => {
     fetchServices()
