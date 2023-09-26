@@ -1,4 +1,4 @@
-function DeleteServices({ service, onDelete, onCancel }) {
+function DeleteServices({ service, onDelete, onCancel }: any) {
   return (
     <div className="modal">
       <div className="modal-content">
