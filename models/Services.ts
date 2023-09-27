@@ -4,4 +4,8 @@ export interface ServiceModel {
   price: number
   description: string
 }
-
+export interface ServiceModelNoID {
+  name: string
+  price: number
+  description: string
+}
