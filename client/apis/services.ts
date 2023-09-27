@@ -32,3 +32,16 @@ export async function deleteServices(serviceId: number) {
     console.error('Error adding service:')
   }
 }
+
+export async function updateServices(service: any) {
+  try {
+    const response = await request.put(serviceURL).send(service)
+    if (response.status === 200) {
+      return response.body
+    } else {
+      throw new Error('Failed to update service')
+    }
+  } catch (error) {
+    console.error('Error adding service:')
+  }
+}
