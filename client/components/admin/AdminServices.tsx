@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { addServices, deleteServices, getServices } from '../../apis/services'
+import { deleteServices, getServices } from '../../apis/services'
 import AddServices from './AddServices'
 import UpdateService from './UpdateServices'
 import { ServiceModel } from '../../../models/Services'
@@ -89,37 +89,43 @@ function AdminServices() {
         {services.map((service) => (
           <div
             key={service.id}
-            className="border border-gray-400 p-4 rounded my-1"
+            className="border border-gray-400 p-4 rounded my-1 flex flex-col"
           >
             <h3 className="text-3xl font-semibold mb-2 text-center">
               {service.name}
             </h3>
             <p className="text-center">{service.description}</p>
 
-            {/* Delete button */}
-            <button
-              onClick={() => openDeleteConfirmation(service)}
-              className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 mt-2"
-            >
-              Delete
-            </button>
-            <button
-              onClick={() => openUpdateService(service)} // Open the update form
-              className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600"
-            >
-              Update
-            </button>
+            <div className="flex justify-center mt-2">
+              {/* Update button */}
+              <button
+                onClick={() => openUpdateService(service)}
+                className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 mr-2"
+              >
+                Update
+              </button>
+
+              {/* Delete button */}
+              <button
+                onClick={() => openDeleteConfirmation(service)}
+                className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Add Service button */}
-      <button
-        className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
-        onClick={openAddServicePopup}
-      >
-        Add Service
-      </button>
+      <div className="flex justify-center">
+        {/* Add Service button */}
+        <button
+          className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+          onClick={openAddServicePopup}
+        >
+          Add Service
+        </button>
+      </div>
 
       {/* Add Service Popup */}
       {isAddServicePopupOpen && (
