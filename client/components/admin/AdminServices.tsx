@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { addServices, deleteServices, getServices } from '../../apis/services'
 import AddServices from './AddServices'
+import UpdateService from './UpdateServices'
 import { ServiceModel } from '../../../models/Services'
 
 function AdminServices() {
@@ -9,6 +10,10 @@ function AdminServices() {
   const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] =
     useState(false)
   const [serviceToDelete, setServiceToDelete] = useState<ServiceModel | null>(
+    null
+  )
+  const [isUpdateServiceOpen, setIsUpdateServiceOpen] = useState(false)
+  const [serviceToUpdate, setServiceToUpdate] = useState<ServiceModel | null>(
     null
   )
 
@@ -40,6 +45,16 @@ function AdminServices() {
     setIsDeleteConfirmationOpen(false)
   }
 
+  const openUpdateService = (service: ServiceModel) => {
+    setServiceToUpdate(service)
+    setIsUpdateServiceOpen(true)
+  }
+
+  const closeUpdateService = () => {
+    setServiceToUpdate(null)
+    setIsUpdateServiceOpen(false)
+  }
+
   const handleDelete = async () => {
     if (!serviceToDelete) {
       return
@@ -52,6 +67,17 @@ function AdminServices() {
     } catch (error) {
       console.error('Error deleting service: ', error)
     }
+  }
+  // Add a function to handle updates
+  const handleUpdate = (updatedService: ServiceModel) => {
+    // Update the service in the state
+    const updatedServices = services.map((service) =>
+      service.id === updatedService.id ? updatedService : service
+    )
+    setServices(updatedServices)
+
+    // Close the update form
+    closeUpdateService()
   }
 
   return (
@@ -76,6 +102,12 @@ function AdminServices() {
               className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 mt-2"
             >
               Delete
+            </button>
+            <button
+              onClick={() => openUpdateService(service)} // Open the update form
+              className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600"
+            >
+              Update
             </button>
           </div>
         ))}
@@ -124,6 +156,15 @@ function AdminServices() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Update Service Form */}
+      {isUpdateServiceOpen && (
+        <UpdateService
+          serviceData={serviceToUpdate} // Pass the service data to update
+          onUpdate={handleUpdate} // Callback for successful update
+          onCancel={closeUpdateService} // Callback for canceling update
+        />
       )}
     </div>
   )
