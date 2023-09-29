@@ -1,32 +1,32 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { updateServices } from '../../apis/services'
 
-function UpdateServices({ onClose, fetchServices, serviceData }: any) {
-  const [updatedServiceName, setUpdatedServiceName] = useState(serviceData.name)
-  const [updatedServicePrice, setUpdatedServicePrice] = useState(
-    serviceData.price
-  )
-  const [updatedServiceDescription, setUpdatedServiceDescription] = useState(
-    serviceData.description
-  )
+function UpdateService({ serviceData, onUpdate, onCancel }:any) {
+  const [updatedService, setUpdatedService] = useState({ ...serviceData })
   const [error, setError] = useState('')
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleInputChange = (e:any) => {
+    const { name, value } = e.target
+    setUpdatedService({
+      ...updatedService,
+      [name]: value,
+    })
+  }
+
+  const handleSubmit = async (event:any) => {
     event.preventDefault()
 
     try {
       // Call the API function to update the service
-      const updatedService = {
-        id: serviceData.id, // Include the service ID in the update data
-        name: updatedServiceName,
-        price: updatedServicePrice,
-        description: updatedServiceDescription,
+      const updatedServiceData = {
+        id: serviceData.id, // Make sure you include the ID in the updated data
+        ...updatedService,
       }
-      await updateServices(updatedService)
 
-      // Close the popup
-      onClose()
-      fetchServices()
+      await updateServices(updatedServiceData)
+
+      // Notify the parent component that the update was successful
+      onUpdate(updatedServiceData)
     } catch (error) {
       setError('Error updating service. Please try again later.')
     }
@@ -42,7 +42,7 @@ function UpdateServices({ onClose, fetchServices, serviceData }: any) {
         {/* Close button */}
         <button
           className="absolute top-2 right-2 text-white hover:text-gray-300"
-          onClick={onClose}
+          onClick={onCancel}
         >
           Close
         </button>
@@ -52,24 +52,27 @@ function UpdateServices({ onClose, fetchServices, serviceData }: any) {
         <form onSubmit={handleSubmit} className="grid gap-4">
           <input
             type="text"
+            name="name"
             placeholder="Service Name"
-            value={updatedServiceName}
-            onChange={(e) => setUpdatedServiceName(e.target.value)}
+            value={updatedService.name}
+            onChange={handleInputChange}
             className="w-full p-2 border rounded"
             required
           />
           <input
             type="number"
+            name="price"
             placeholder="Service Price"
-            value={updatedServicePrice}
-            onChange={(e) => setUpdatedServicePrice(parseFloat(e.target.value))}
+            value={updatedService.price}
+            onChange={handleInputChange}
             className="w-full p-2 border rounded"
             required
           />
           <textarea
+            name="description"
             placeholder="Service Description"
-            value={updatedServiceDescription}
-            onChange={(e) => setUpdatedServiceDescription(e.target.value)}
+            value={updatedService.description}
+            onChange={handleInputChange}
             className="w-full p-2 border rounded"
             required
           />
@@ -79,10 +82,17 @@ function UpdateServices({ onClose, fetchServices, serviceData }: any) {
           >
             Update Service
           </button>
+          <button
+            type="button"
+            onClick={onCancel}
+            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 w-full"
+          >
+            Cancel
+          </button>
         </form>
       </div>
     </div>
   )
 }
 
-export default UpdateServices
+export default UpdateService
