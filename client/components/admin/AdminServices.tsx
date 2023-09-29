@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { addServices, deleteServices, getServices } from '../../apis/services'
+import { deleteServices, getServices } from '../../apis/services'
 import AddServices from './AddServices'
 import UpdateService from './UpdateServices'
 import { ServiceModel } from '../../../models/Services'
@@ -95,6 +95,12 @@ function AdminServices() {
               {service.name}
             </h3>
             <p className="text-center">{service.description}</p>
+            <button
+              onClick={() => openUpdateService(service)} // Open the update form
+              className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600"
+            >
+              Update
+            </button>
 
             {/* Delete button */}
             <button
@@ -102,12 +108,6 @@ function AdminServices() {
               className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 mt-2"
             >
               Delete
-            </button>
-            <button
-              onClick={() => openUpdateService(service)} // Open the update form
-              className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600"
-            >
-              Update
             </button>
           </div>
         ))}
