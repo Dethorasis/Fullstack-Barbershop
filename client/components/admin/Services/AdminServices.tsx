@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { deleteServices, getServices } from '../../apis/services'
+import { deleteServices, getServices } from '../../../apis/services'
 import AddServices from './AddServices'
 import UpdateService from './UpdateServices'
-import { ServiceModel } from '../../../models/Services'
+import { ServiceModel } from '../../../../models/Services'
 
 function AdminServices() {
   const [services, setServices] = useState<ServiceModel[]>([])
