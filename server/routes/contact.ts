@@ -6,12 +6,23 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
   try {
-    const gallery = await db.getContact()
+    const contact = await db.getContact()
 
     console.log('contact route is being listed')
-    res.json(gallery)
+    res.json(contact)
   } catch (error) {
     res.status(500)
+  }
+})
+
+router.put('/', async (req, res) => {
+  try {
+    const updatedContact = await db.updateContact(req.body)
+
+    console.log('updating contact route')
+    res.json({ updatedContact })
+  } catch (error) {
+    res.status(500).json({ error: 'Database error' })
   }
 })
 

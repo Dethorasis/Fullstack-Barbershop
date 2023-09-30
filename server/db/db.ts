@@ -45,6 +45,16 @@ export function getGallery(db = connection): Promise<GalleryModel[]> {
 export function getContact(db = connection): Promise<ContactModel[]> {
   return db('contact').select()
 }
+export function updateContact(newContact: ContactModel, db = connection): Promise<number> {
+
+  return db('contact').update({
+    number: newContact.number,
+    email: newContact.email,
+    instagram: newContact.instagram,
+    address: newContact.address
+  })
+  .where('id', newContact.id)
+}
 
 //AUTHENTICATION FUNCTIONS
 
