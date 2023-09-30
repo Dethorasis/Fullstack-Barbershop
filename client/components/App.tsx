@@ -5,7 +5,7 @@ import ServicesPage from './Services'
 import GalleryPage from './Gallery'
 import ContactPage from './Contact'
 // import AddServices from './admin/AddServices'
-import AdminServices from './admin/AdminServices'
+import AdminServices from './admin/Services/AdminServices'
 
 function App() {
   return (

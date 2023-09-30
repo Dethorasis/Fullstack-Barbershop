@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { updateServices } from '../../apis/services'
+import { updateServices } from '../../../apis/services'
 
-function UpdateService({ serviceData, onUpdate, onCancel }:any) {
+function UpdateService({ serviceData, onUpdate, onCancel }: any) {
   const [updatedService, setUpdatedService] = useState({ ...serviceData })
   const [error, setError] = useState('')
 
-  const handleInputChange = (e:any) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target
     setUpdatedService({
       ...updatedService,
@@ -13,7 +13,7 @@ function UpdateService({ serviceData, onUpdate, onCancel }:any) {
     })
   }
 
-  const handleSubmit = async (event:any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault()
 
     try {

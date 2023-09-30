@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { addServices } from '../../apis/services'
+import { addServices } from '../../../apis/services'
 
 function AddServices({ onClose, fetchServices }: any) {
   const [serviceName, setServiceName] = useState('')
