@@ -8,7 +8,7 @@ export async function getContact() {
   return response.body
 }
 
-export async function updateServices(updatedContact: ContactModel) {
+export async function updateContact(updatedContact: ContactModel) {
   try {
     const response = await request.put(contactURL).send(updatedContact)
     if (response.status === 200) {
