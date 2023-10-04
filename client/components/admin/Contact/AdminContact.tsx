@@ -1,9 +1,14 @@
-import { useState, useEffect } from 'react'
-import { getContact } from '../../../apis/contact'
-import { ContactModel } from '../../../../models/Contact'
+import React, { useState, useEffect } from 'react'
+import { getContact, updateContact } from '../../../apis/contact'
+import { ContactModelId } from '../../../../models/Contact'
+import UpdateContact from './UpdateContact'
 
 function AdminContact() {
-  const [contact, setContact] = useState<ContactModel[]>([])
+  const [contact, setContact] = useState<ContactModelId[]>([])
+  const [isUpdateContactOpen, setIsUpdateContactOpen] = useState(false)
+  const [contactToUpdate, setContactToUpdate] = useState<ContactModelId | null>(
+    null
+  )
 
   useEffect(() => {
     fetchContact()
@@ -14,21 +19,30 @@ function AdminContact() {
       const contactData = await getContact()
       setContact(contactData)
     } catch (error) {
-      console.error('Error fetching services: ', error)
+      console.error('Error fetching contact: ', error)
     }
   }
 
-  // Function to handle updates
-  // const handleUpdate = (updatedService: ServiceModel) => {
-  //   // Update the service in the state
-  //   const updatedServices = services.map((service) =>
-  //     service.id === updatedService.id ? updatedService : service
-  //   )
-  //   setServices(updatedServices)
+  const openUpdateContact = (contact: ContactModelId) => {
+    setContactToUpdate(contact)
+    setIsUpdateContactOpen(true)
+  }
 
-  //   // Close the update form
-  //   closeUpdateService()
-  // }
+  const closeUpdateContact = () => {
+    setContactToUpdate(null)
+    setIsUpdateContactOpen(false)
+  }
+
+  // Function to handle the update of contact information
+  const handleUpdateContact = async (updatedContact: ContactModelId) => {
+    try {
+      await updateContact(updatedContact)
+      closeUpdateContact()
+      fetchContact()
+    } catch (error) {
+      console.error('Error updating contact: ', error)
+    }
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -55,10 +69,24 @@ function AdminContact() {
               <p>
                 <strong>Address:</strong> {contacts.address}
               </p>
+              <br></br>
+              <button
+                onClick={() => openUpdateContact(contacts)}
+                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 mt-2"
+              >
+                Update Contact Info
+              </button>
             </li>
           ))}
         </ul>
       </div>
+      {isUpdateContactOpen && (
+        <UpdateContact
+          contactData={contactToUpdate}
+          onUpdate={handleUpdateContact}
+          onCancel={closeUpdateContact}
+        />
+      )}
     </div>
   )
 }
