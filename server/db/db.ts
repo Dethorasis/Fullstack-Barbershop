@@ -1,7 +1,7 @@
 import connection from './connection'
 import type { ServiceModel } from '../../models/Services'
 import { GalleryModel } from '../../models/Gallery'
-import { ContactModel } from '../../models/Contact'
+import { ContactModel, ContactModelId } from '../../models/Contact'
 
 //SERVICE FUNCTIONS
 
@@ -39,13 +39,17 @@ export function updateServices(
 export function getGallery(db = connection): Promise<GalleryModel[]> {
   return db('gallery').select()
 }
+export function addGalleryImage(newImage: GalleryModel, db = connection) {
+
+  return db('gallery').insert(newImage)
+}
 
 //CONTACT FUNCTIONS
 
 export function getContact(db = connection): Promise<ContactModel[]> {
   return db('contact').select()
 }
-export function updateContact(newContact: ContactModel, db = connection): Promise<number> {
+export function updateContact(newContact: ContactModelId, db = connection): Promise<number> {
 
   return db('contact').update({
     number: newContact.number,
