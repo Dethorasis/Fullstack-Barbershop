@@ -39,6 +39,10 @@ export function updateServices(
 export function getGallery(db = connection): Promise<GalleryModel[]> {
   return db('gallery').select()
 }
+export function addGalleryImage(newImage: GalleryModel, db = connection) {
+
+  return db('gallery').insert(newImage)
+}
 
 //CONTACT FUNCTIONS
 
