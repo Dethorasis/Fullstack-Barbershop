@@ -12,7 +12,11 @@ const uploadDirectory = '/images/'
 // Multer config for file uploading
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadPath = path.join(__dirname, '..', uploadDirectory)
+    const uploadPath = path.join(
+      '/home/dethorasis1/projects/FullStack-Practice/server',
+      'public',
+      'images'
+    )
 
     // Check if the directory exists, and create it if not
     if (!fs.existsSync(uploadPath)) {
@@ -21,6 +25,7 @@ const storage = multer.diskStorage({
 
     cb(null, uploadPath)
   },
+
   filename: (req, file, cb) => {
     cb(null, file.originalname)
   },

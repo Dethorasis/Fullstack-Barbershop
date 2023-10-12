@@ -7,6 +7,7 @@ import ContactPage from './Contact'
 // import AddServices from './admin/AddServices'
 import AdminServices from './admin/Services/AdminServices'
 import AdminContact from './admin/Contact/AdminContact'
+import AdminGallery from './admin/Gallery/AdminGallery'
 
 function App() {
   return (
@@ -18,8 +19,10 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/contact" element={<ContactPage />} />
+
           <Route path="/admin/services" element={<AdminServices />} />
           <Route path="/admin/contact" element={<AdminContact />} />
+          <Route path="/admin/gallery" element={<AdminGallery />} />
         </Routes>
       </div>
     </>
