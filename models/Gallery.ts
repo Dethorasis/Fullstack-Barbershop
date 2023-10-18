@@ -4,6 +4,6 @@ export interface GalleryModel {
   description: string
 }
 
-export interface GalleryModelId {
+export interface GalleryModelId extends GalleryModel{
   id: number
 }
