@@ -6,7 +6,6 @@ import Gallery from '../../Gallery'
 
 function AdminGallery() {
   const [images, setImages] = useState<GalleryModelId[]>([])
-  const [isAddGalleryOpen, setIsAddGalleryOpen] = useState(false)
 
   useEffect(() => {
     fetchGalleryImages()
@@ -26,22 +25,11 @@ function AdminGallery() {
     setImages((prevImages) => [...prevImages, newImage])
   }
 
-  const openAddGalleryPopup = () => {
-    setIsAddGalleryOpen(true)
-  }
-
   return (
     <div>
       <Gallery />
-      <div className="flex items-center justify-center">
-        <button
-          className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
-          onClick={openAddGalleryPopup}
-        >
-          Add Image
-        </button>
-      </div>
-      {isAddGalleryOpen && <AddGallery onAddImage={handleAddImage} />}
+      <div className="flex items-center justify-center"></div>
+      {<AddGallery onAddImage={handleAddImage} />}
     </div>
   )
 }
