@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState, ChangeEvent, FormEvent } from 'react'
 import { addGalleryImage } from '../../../apis/gallery'
 
-function AddGallery({ onAddImage }) {
+function AddGallery() {
   const [isOpen, setIsOpen] = useState(false)
-  const [image, setImage] = useState(null)
+  const [image, setImage] = useState<File | null>(null)
+
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [error, setError] = useState('')
@@ -21,28 +22,23 @@ function AddGallery({ onAddImage }) {
     setError('')
   }
 
-  const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0]
-    setImage(selectedImage)
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const selectedImage = event.target.files[0]
+      setImage(selectedImage)
+    }
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
 
     if (image && title && description) {
       const formData = new FormData()
       formData.append('image', image)
-      formData.append('title', title)
-      formData.append('description', description)
 
       try {
-        const newImage = await addGalleryImage(formData)
-        if (newImage) {
-          onAddImage(newImage)
-          closePopup()
-        } else {
-          setError('Failed to add image')
-        }
+        await addGalleryImage(formData)
+        closePopup()
       } catch (error) {
         setError('Error adding image. Please try again later.')
       }
