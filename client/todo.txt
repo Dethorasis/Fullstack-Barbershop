@@ -1,0 +1,26 @@
+===== TO DO LIST (in no particular order) =====
+
+Admin able to delete images 
+
+Show haircut prices on services
+
+Redo styling of website into more of a black color
+
+Make site responsive on smaller/larger devices
+
+Create login page
+
+Set up admin authentication
+
+Write tests on CRUD operations
+
+Investigate continuous integration
+
+Remove "APPOINTMENT" button/replace with something else
+
+Fix gallery images so that they are the same sizes
+
+Investigate deployment
+
+
+
