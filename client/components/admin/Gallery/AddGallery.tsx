@@ -32,9 +32,11 @@ function AddGallery() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (image && title && description) {
+    if (image) {
       const formData = new FormData()
       formData.append('image', image)
+      formData.append('title', title) // Capture the title from your state
+      formData.append('description', description) // Capture the description from your state
 
       try {
         await addGalleryImage(formData)

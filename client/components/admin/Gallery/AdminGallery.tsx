@@ -12,7 +12,6 @@ function AdminGallery() {
   }, [])
 
   const fetchGalleryImages = async () => {
-    // Implement the logic to fetch and set the gallery images (images) using an API function
     try {
       const galleryData = await getGallery()
       setImages(galleryData)
