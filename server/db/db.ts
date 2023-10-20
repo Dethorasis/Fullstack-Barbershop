@@ -1,6 +1,6 @@
 import connection from './connection'
 import type { ServiceModel } from '../../models/Services'
-import { GalleryModel } from '../../models/Gallery'
+import { GalleryModel, GalleryModelId } from '../../models/Gallery'
 import { ContactModel, ContactModelId } from '../../models/Contact'
 
 //SERVICE FUNCTIONS
@@ -42,6 +42,9 @@ export function getGallery(db = connection): Promise<GalleryModel[]> {
 export function addGalleryImage(newImage: GalleryModel, db = connection) {
 
   return db('gallery').insert(newImage)
+}
+export function deleteGalleryImage(id: number, db = connection) {
+  return db('gallery').where('id', id).del()
 }
 
 //CONTACT FUNCTIONS
