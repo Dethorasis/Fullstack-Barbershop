@@ -55,8 +55,8 @@ router.post('/', upload.single('image'), async (req, res) => {
 
     await db.addGalleryImage({
       url: path.join(uploadDirectory, file.originalname),
-      title: 'Title',
-      description: 'Description',
+      title: req.body.title,
+      description: req.body.description,
     })
 
     console.log('gallery route is being posted to')

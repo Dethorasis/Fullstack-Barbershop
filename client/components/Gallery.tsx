@@ -32,12 +32,12 @@ function Gallery() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center max-h-screen bg-gray-100">
       <div className="relative">
         <img
           src={images[currentIndex]?.url}
           alt={`Gallery Image ${currentIndex}`}
-          className="max-w-full max-h-screen mx-auto"
+          className="max-h-screen mx-auto w-[85%] mt-0 mb-0 rounded"
         />
         <button
           onClick={prevImage}
