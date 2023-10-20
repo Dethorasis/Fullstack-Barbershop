@@ -8,15 +8,16 @@ export async function getGallery() {
   return response.body
 }
 
-export async function addGalleryImage(gallery: GalleryModel) {
+export async function addGalleryImage(gallery: FormData) {
   try {
-    const response = await request.post(galleryURL).send(gallery)
+    const response = await request.post(galleryURL).send(gallery);
     if (response.status === 200) {
-      return response.body
+      return response.body;
     } else {
-      throw new Error('Failed to add image')
+      throw new Error('Failed to add image');
     }
   } catch (error) {
-    console.error('Error adding image:')
+    console.error('Error adding image:', error);
   }
 }
+
