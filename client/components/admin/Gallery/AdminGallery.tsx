@@ -20,7 +20,7 @@ function AdminGallery() {
     }
   }
 
-  const handleAddImage = (newImage) => {
+  const handleAddImage = (newImage: GalleryModelId) => {
     setImages((prevImages) => [...prevImages, newImage])
   }
 

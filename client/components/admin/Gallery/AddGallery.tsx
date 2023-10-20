@@ -1,7 +1,12 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
 import { addGalleryImage } from '../../../apis/gallery'
+import { GalleryModelId } from '../../../../models/Gallery'
 
-function AddGallery() {
+interface AddGalleryProps {
+  onAddImage: (newImage: GalleryModelId) => void
+}
+
+function AddGallery({ onAddImage }: AddGalleryProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [image, setImage] = useState<File | null>(null)
 
@@ -35,8 +40,8 @@ function AddGallery() {
     if (image) {
       const formData = new FormData()
       formData.append('image', image)
-      formData.append('title', title) // Capture the title from your state
-      formData.append('description', description) // Capture the description from your state
+      formData.append('title', title)
+      formData.append('description', description)
 
       try {
         await addGalleryImage(formData)
