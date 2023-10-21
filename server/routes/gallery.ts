@@ -67,4 +67,12 @@ router.post('/', upload.single('image'), async (req, res) => {
   }
 })
 
+router.delete('/:id', async (req, res) => {
+  const imageId = req.params.id
+
+  const deletedImage = await db.deleteGalleryImage(+imageId)
+  console.log('deleting on admin gallery route')
+  res.json(deletedImage)  
+})
+
 export default router

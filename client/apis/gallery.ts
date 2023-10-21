@@ -1,5 +1,4 @@
 import request from 'superagent'
-import { GalleryModel } from '../../models/Gallery'
 
 const galleryURL = '/api/v1/galleryroutes'
 
@@ -18,6 +17,19 @@ export async function addGalleryImage(gallery: FormData) {
     }
   } catch (error) {
     console.error('Error adding image:', error);
+  }
+}
+
+export async function deleteServices(imageId: number) {
+  try {
+    const response = await request.delete(`${galleryURL}/${imageId}`)
+    if (response.status === 200) {
+      return response.body
+    } else {
+      throw new Error('Failed to delete image')
+    }
+  } catch (error) {
+    console.error('Error deleting image:')
   }
 }
 
