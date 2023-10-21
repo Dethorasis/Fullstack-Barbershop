@@ -1,6 +1,10 @@
 ===== TO DO LIST (in no particular order) =====
 
-Admin able to delete images 
+Admin able to delete images ✅
+
+Fix not being able to see newly added image without refreshing page
+
+Fix site trying to show deleted image if you don't refresh page
 
 Show haircut prices on services
 
@@ -9,6 +13,8 @@ Redo styling of website into more of a black color
 Make site responsive on smaller/larger devices
 
 Create login page
+
+Research admin authentication
 
 Set up admin authentication
 
@@ -22,5 +28,10 @@ Fix gallery images so that they are the same sizes
 
 Investigate deployment
 
+Add "..loading" to components so that they don't flash on screen for 0.1 seconds
+
+Overhaul comments and console logs
+
+Overhaul error handling to give more detail 
 
 
