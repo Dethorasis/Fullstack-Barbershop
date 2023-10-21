@@ -73,18 +73,30 @@ function AdminGallery() {
         </div>
       </div>
 
-      <AddGallery onAddImage={handleAddImage} />
+      <div className="flex flex-col items-center mt-2">
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <AddGallery onAddImage={handleAddImage} />
+          <button
+            className="bg-red-500 py-2 px-4 text-white rounded hover:bg-red-600 mb-1 ml-2"
+            onClick={() => setShowDeleteConfirmation(true)}
+          >
+            Delete Image
+          </button>
+        </div>
 
-      <button onClick={() => setShowDeleteConfirmation(true)}>
-        Delete Image
-      </button>
-
-      {showDeleteConfirmation && (
-        <DeleteGallery
-          onCancel={() => setShowDeleteConfirmation(false)}
-          onDelete={() => deleteImage(images[currentIndex].id)}
-        />
-      )}
+        {showDeleteConfirmation && (
+          <DeleteGallery
+            onCancel={() => setShowDeleteConfirmation(false)}
+            onDelete={() => deleteImage(images[currentIndex].id)}
+          />
+        )}
+      </div>
     </div>
   )
 }

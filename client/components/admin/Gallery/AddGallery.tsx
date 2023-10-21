@@ -54,7 +54,6 @@ function AddGallery({ onAddImage }: AddGalleryProps) {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="py-2 px-4"></div>
       <button
         onClick={openPopup}
         className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mb-1"
