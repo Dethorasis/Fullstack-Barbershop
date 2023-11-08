@@ -32,6 +32,7 @@ function Services() {
               {service.name}
             </h3>
             <p className="text-center">{service.description}</p>
+            <p className="text-center">Price: ${service.price}</p>
           </div>
         ))}
       </div>

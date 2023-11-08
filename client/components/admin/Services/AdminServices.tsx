@@ -95,6 +95,7 @@ function AdminServices() {
               {service.name}
             </h3>
             <p className="text-center">{service.description}</p>
+            <p className="text-center">Price: ${service.price}</p>
 
             <div className="flex justify-center mt-2">
               {/* Update button */}

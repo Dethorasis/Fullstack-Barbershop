@@ -6,7 +6,7 @@ Fix not being able to see newly added image without refreshing page
 
 Fix site trying to show deleted image if you don't refresh page
 
-Show haircut prices on services
+Show haircut prices on services ✅
 
 Redo styling of website into more of a black color
 
